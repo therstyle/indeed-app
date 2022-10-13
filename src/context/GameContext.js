@@ -5,6 +5,7 @@ const GameContext = createContext(null);
 function GameContextProvider(props) {
 	const [questions, setQuestions] = useState([]);
 	const totalQuestions = questions.length;
+	const questionsAnswered = questions.filter(question => question?.answered).length;
 	const playerScore = questions.filter(question => question?.userCorrect).length;
 	const [currentQuestion, setCurrentQuestion] = useState(0);
 	const [currentComponent, setCurrentComponent] = useState('GameIntro');
@@ -17,6 +18,7 @@ function GameContextProvider(props) {
 		questions,
 		setQuestions,
 		totalQuestions,
+		questionsAnswered,
 		playerScore,
 		currentQuestion,
 		setCurrentQuestion,
@@ -24,6 +26,8 @@ function GameContextProvider(props) {
 		setCurrentComponent,
 		playerName,
 		setPlayerName,
+		playStyle,
+		setPlayStyle,
 		playerScoreHistory,
 		setPlayerScoreHistory
 	}
@@ -32,8 +36,11 @@ function GameContextProvider(props) {
 		try {
 			const response = await fetch(url);
 			const data = await response.json();
+			const questionsOrder = playStyle === 'random' ? data.sort((a, b) => 0.5 - Math.random()) : data;
 
-			setQuestions(data); 
+			console.log(questionsOrder);
+
+			setQuestions(questionsOrder); 
 		}
 		catch(error) {
 			console.error(error);
@@ -42,7 +49,7 @@ function GameContextProvider(props) {
 
 	useEffect(() => {
 		loadData('data.json');
-	}, []);
+	}, [playStyle]);
 
 	return (
 		<GameContext.Provider value={data}>

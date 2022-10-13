@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import useGameContext from '../context/useGameContext';
 
 function GameQuestion(props) {
@@ -10,6 +10,7 @@ function GameQuestion(props) {
 		currentQuestion, 
 		setCurrentQuestion,
 		totalQuestions,
+		questionsAnswered,
 		playerScore,
 		setCurrentComponent
 	} = useGameContext();
@@ -25,31 +26,27 @@ function GameQuestion(props) {
 		setCurrentSelection(parseInt(e.target.value));
 	}
 
-	function nextQuestion() {
-		setCurrentQuestion(currentQuestion + 1);
-	}
-
 	function endTurn() {
 		const questionsCopy = [...questions];
 		questionsCopy[currentQuestion].answered = true;
 		questionsCopy[currentQuestion].userCorrect = userCorrect();
 		setQuestions(questionsCopy);
 		setCurrentSelection(false);
+	}
 
-		const questionsAnswered = questions.filter(question => question?.answered).length;
-		const unAnsweredQuestions = questions.filter(question => !question?.answered);
-
-		if (questionsAnswered !== 0 && questionsAnswered === totalQuestions) {
-			endGame();
+	function nextItem() {
+		if (questionsAnswered === 0) {return};
+		if (questionsAnswered === totalQuestions) {
+			setCurrentComponent('GameOver');
 		}
 		else {
-			nextQuestion();
+			setCurrentQuestion(currentQuestion + 1);
 		}
 	}
 
-	function endGame() {
-		setCurrentComponent('GameOver');
-	}
+	useEffect(() => {
+		nextItem();
+	}, [questions]);
 
 	return (
 		<li id={`game-question-${id}`} className="game__question">

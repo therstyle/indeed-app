@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import GameIntro from './components/GameIntro';
 import GameOptions from './components/GameOptions';
 import GameQuestions from './components/GameQuestions';
