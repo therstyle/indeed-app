@@ -1,0 +1,11 @@
+$mobile: 992px;
+$mobileHeight: 768px;
+$desktop: $mobile + 1;
+$desktopHeight: $mobileHeight + 1;
+
+@import 'mixins';
+
+:root {
+	--max-container-width: 1170px;
+	--wrapper-padding: 5vw;
+}

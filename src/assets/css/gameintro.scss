@@ -1,0 +1,12 @@
+@import 'vars';
+
+.game {
+	&__intro {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		text-align: center;
+		min-height: calc(100vh - (var(--wrapper-padding) * 2));
+		padding: var(--wrapper-padding);
+	}
+}
