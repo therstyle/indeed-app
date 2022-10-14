@@ -18,6 +18,7 @@ function GameQuestion(props) {
 
 	const userCorrect = () => question?.answerIndex.includes(currentSelection);
 	const statusMessage = userCorrect() ? 'You got it right!' : 'Sorry, wrong answer';
+	const statusClass = userCorrect() ? 'answer-correct' : 'answer-wrong';
 
 	function submitHandler(e) {
     e.preventDefault();
@@ -66,8 +67,12 @@ function GameQuestion(props) {
 	return (
 		<li id={`game-question-${id}`} className="game__question">
 			<article className="game__question-content">
-				<p>PlayerScore = {playerScore}</p>
-				<h3>{question?.question}</h3>
+				<header className="game__question-header">
+				<h3>Question {currentQuestion + 1} of {totalQuestions}</h3>
+				<h3>PlayerScore = {playerScore}</h3>
+				</header>
+				
+				<p>{question?.question}</p>
 
 				<form onSubmit={(e) => submitHandler(e)}>
 					<ul>
@@ -89,7 +94,7 @@ function GameQuestion(props) {
 					</ul>
 
 					<button>Next question</button>
-					{currentSelection !== null && <div className="game__question-answer">{statusMessage}</div>}
+					{currentSelection !== null && <div className={`game__question-answer ${statusClass}`}>{statusMessage}</div>}
 
           {error && <div className="game__question-error">Please choose an option to continue</div>}
 				</form>
