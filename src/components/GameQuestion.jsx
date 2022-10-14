@@ -3,7 +3,8 @@ import useGameContext from '../context/useGameContext';
 
 function GameQuestion(props) {
 	const {id, question} = props;
-	const [currentSelection, setCurrentSelection] = useState(false);
+	const [currentSelection, setCurrentSelection] = useState(null);
+	const [error, setError] = useState(false);
 	const {
 		questions,
 		setQuestions,
@@ -16,14 +17,23 @@ function GameQuestion(props) {
 	} = useGameContext();
 
 	const userCorrect = () => question?.answerIndex.includes(currentSelection);
+	const statusMessage = userCorrect() ? 'You got it right!' : 'Sorry, wrong answer';
 
 	function submitHandler(e) {
-		e.preventDefault();
-		endTurn();
-	}
+    e.preventDefault();
+    
+    if (currentSelection === null) {
+      setError(true);
+    }
+    else {
+      setError(false);
+			endTurn();
+    }
+  }
 
 	function changeHandler(e) {
 		setCurrentSelection(parseInt(e.target.value));
+		setError(false);
 	}
 
 	function endTurn() {
@@ -31,7 +41,7 @@ function GameQuestion(props) {
 		questionsCopy[currentQuestion].answered = true;
 		questionsCopy[currentQuestion].userCorrect = userCorrect();
 		setQuestions(questionsCopy);
-		setCurrentSelection(false);
+		reset();
 	}
 
 	function nextItem() {
@@ -43,6 +53,11 @@ function GameQuestion(props) {
 			setCurrentQuestion(currentQuestion + 1);
 		}
 	}
+
+	function reset() {
+    setCurrentSelection(null);
+    setError(false);
+  }
 
 	useEffect(() => {
 		nextItem();
@@ -64,15 +79,19 @@ function GameQuestion(props) {
 								name={`game-question-${id}_option-${index}`}
 								checked={currentSelection === index}
 								onChange={(e) => changeHandler(e)}
-								value={index} />
+								value={index}
+								disabled={currentSelection !== null}
+								/>
 
 								<label htmlFor={`game-question-${id}_option-${index}`}>{option}</label>
 							</li>
 						))}
 					</ul>
 
-					<button>Submit</button>
-					<div className="game__question-answer"></div>
+					<button>Next question</button>
+					{currentSelection !== null && <div className="game__question-answer">{statusMessage}</div>}
+
+          {error && <div className="game__question-error">Please choose an option to continue</div>}
 				</form>
 			</article>
 		</li>
