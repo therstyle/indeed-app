@@ -2,10 +2,27 @@ $mobile: 992px;
 $mobileHeight: 768px;
 $desktop: $mobile + 1;
 $desktopHeight: $mobileHeight + 1;
+$html-font-size: 16px;
 
 @import 'mixins';
 
 :root {
-	--max-container-width: 1170px;
-	--wrapper-padding: 5vw;
+	//Sizes
+	--max-container-width: 808px;
+	--wrapper-padding: #{rem(48)};
+
+	//Colors
+	--white: #FFF;
+	--light-blue: #{lighten(#065FB1, 60%)};
+	--blue: #065FB1;
+	--dark-blue: #164081;
+	--gray: #ccc;
+	--light-gray: #{lighten(#cccccc, 5%)};
+
+	//Fonts
+	--headline-font: 'Alfa Slab One', cursive;
+	--main-font: 'Noto Sans', sans-serif;
+
+	//Misc
+	--transition-duration: 0.2s;
 }

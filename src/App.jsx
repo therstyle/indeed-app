@@ -4,7 +4,7 @@ import GameOptions from './components/GameOptions';
 import GameQuestions from './components/GameQuestions';
 import GameOver from './components/GameOver';
 import useGameContext from './context/useGameContext';
-import './assets/css/global.scss';
+import './assets/css/style.scss';
 
 function App() {
 	const {currentComponent} = useGameContext();

@@ -1,0 +1,58 @@
+@import 'vars';
+
+.game {
+	&__options {
+		text-align: center;
+	}
+
+	&__options-content {
+		--gap: #{rem(48px)};
+
+		display: flex;
+		flex-direction: column;
+		gap: var(--gap);
+	}
+
+	&__options-choices {
+		--gap: #{rem(24px)};
+
+		display: flex;
+		flex-direction: column;
+		gap: var(--gap);
+		align-items: center;
+	}
+
+	&__options-option {
+		--gap: #{rem(12px)};
+
+		display: flex;
+		flex-direction: column;
+		gap: var(--gap);
+
+		input:not([type="radio"]):not([type="checkbox"]) {
+			font-size: rem(16px);
+			border-radius: rem(8px);
+			padding: rem(12px) rem(16px);
+		}
+	}
+
+	&__option-title {
+		margin-bottom: 0;
+		display: block;
+	}
+
+	&__option-multiple-choice {
+		--gap: #{rem(12px)};
+
+		display: flex;
+		flex-wrap: wrap;
+		gap: var(--gap);
+
+		> div {
+			--gap: #{rem(2px)};
+
+			display: flex;
+			gap: var(--gap);
+		}
+	}
+}

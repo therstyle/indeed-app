@@ -1,0 +1,21 @@
+@import 'vars';
+
+button {
+	max-width: fit-content;
+	background-color: var(--blue);
+	color: var(--white);
+	font-size: rem(14px);
+	font-weight: 700;
+	padding: rem(12px) rem(16px);
+	border: none;
+	border-radius: rem(8px);
+
+	@include prefers-motion {
+		transition: var(--transition-duration) all ease-in-out;
+	}
+
+	&:hover {
+		cursor: pointer;
+		background-color: var(--dark-blue);
+	}
+}
