@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import useGameContext from "../context/useGameContext";
+import '../assets/css/gameover.scss';
 
 function GameOver() {
 	const {
@@ -61,18 +62,23 @@ function GameOver() {
 	}, [playerScoreHistory])
 
 	return (
-		<div className="game__over">
-			<div className="game__over-content container">
-				<h3>{playerHeadline}</h3>
-				<p>You got {playerScore} out of {totalQuestions} questions right!</p>
+		<section className="game__over full-height">
+			<article className="game__over-content card">
+				<div className="game__over-content-main">
+					<header>
+						<h1>{playerHeadline}</h1>
+					</header>
+				
+					<p>You got {playerScore} out of {totalQuestions} questions right!</p>
 
-				{playerScoreHistory.length > 0 &&
-					<p>Your best score so far was {bestGame.score} out of {bestGame.questions} which you got on {bestGame.date}.</p>
-				}
+					{playerScoreHistory.length > 0 &&
+						<p>Your best score so far was {bestGame.score} out of {bestGame.questions} which you got on {bestGame.date}.</p>
+					}
+				</div>
 
 				<button onClick={() => resetGame()}>Play again!</button>
-			</div>
-		</div>
+			</article>
+		</section>
 	)
 }
 

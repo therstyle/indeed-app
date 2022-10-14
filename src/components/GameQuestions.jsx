@@ -1,19 +1,18 @@
-import { useEffect, useState } from 'react';
 import useGameContext from '../context/useGameContext';
 import GameQuestion from './GameQuestion';
-import '../assets/css/gameboard.scss';
+import '../assets/css/gamequestions.scss';
 
 function GameBoard() {
 	const {questions, currentQuestion} = useGameContext();
 
 	return (
-		<div className="game__board">
-			<div className="game__board-content container">
+		<section className="game__board full-height">
+			<article className="game__board-content card">
 				<ul className="game__board-questions">
 					<GameQuestion id={currentQuestion} question={questions[currentQuestion]}></GameQuestion>
 				</ul>
-			</div>
-		</div>
+			</article>
+		</section>
 	)
 }
 

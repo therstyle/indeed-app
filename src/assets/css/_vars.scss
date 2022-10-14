@@ -18,10 +18,15 @@ $html-font-size: 16px;
 	--dark-blue: #164081;
 	--gray: #ccc;
 	--light-gray: #{lighten(#cccccc, 5%)};
+	--dark-gray: #2D2D2D;
+	--green: #065927;
+	--red: #FF0000;
+	--black: #000;
+
 
 	//Fonts
 	--headline-font: 'Alfa Slab One', cursive;
-	--main-font: 'Noto Sans', sans-serif;
+	--main-font: 'Roboto', sans-serif;
 
 	//Misc
 	--transition-duration: 0.2s;

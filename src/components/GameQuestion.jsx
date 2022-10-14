@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import useGameContext from '../context/useGameContext';
+import '../assets/css/gamequestion.scss';
 
 function GameQuestion(props) {
 	const {id, question} = props;
@@ -66,15 +67,15 @@ function GameQuestion(props) {
 
 	return (
 		<li id={`game-question-${id}`} className="game__question">
-			<article className="game__question-content">
+			<div className="game__question-content">
 				<header className="game__question-header">
-				<h3>Question {currentQuestion + 1} of {totalQuestions}</h3>
-				<h3>PlayerScore = {playerScore}</h3>
+					<h3 className="game__header-title">Question {currentQuestion + 1} of {totalQuestions}</h3>
+					<h3 className="game__header-score"> Score: {playerScore}</h3>
 				</header>
 				
-				<p>{question?.question}</p>
+				<div className="game__question-title">{question?.question}</div>
 
-				<form onSubmit={(e) => submitHandler(e)}>
+				<form className="game__question-choices" onSubmit={(e) => submitHandler(e)}>
 					<ul>
 						{question?.options.map((option, index) => (
 							<li key={index}>
@@ -92,13 +93,15 @@ function GameQuestion(props) {
 							</li>
 						))}
 					</ul>
+					
+					<div className="game__question-action">
+						<button>Next question</button>
+						{currentSelection !== null && <div className={`game__question-answer ${statusClass}`}>{statusMessage}</div>}
 
-					<button>Next question</button>
-					{currentSelection !== null && <div className={`game__question-answer ${statusClass}`}>{statusMessage}</div>}
-
-          {error && <div className="game__question-error">Please choose an option to continue</div>}
+						{error && <div className="game__question-error">Please choose an option to continue</div>}
+					</div>
 				</form>
-			</article>
+			</div>
 		</li>
 	)
 }

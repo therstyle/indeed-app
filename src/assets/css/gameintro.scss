@@ -3,7 +3,6 @@
 .game {
 	&__intro {
 		text-align: center;
-		padding: var(--wrapper-padding);
 	}
 
 	&__intro-content {
@@ -35,6 +34,7 @@
 			letter-spacing: rem(3px);
 			font-size: clamp(rem(48px), 8vw, rem(100px));
 			line-height: 1;
+			color: var(--black);
 		}
 	}
 }
