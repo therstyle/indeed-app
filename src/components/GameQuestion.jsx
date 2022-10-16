@@ -12,7 +12,6 @@ function GameQuestion(props) {
 		currentQuestion, 
 		setCurrentQuestion,
 		totalQuestions,
-		questionsAnswered,
 		playerScore,
 		setPlayerScore,
 		setCurrentComponent
@@ -40,15 +39,15 @@ function GameQuestion(props) {
 		setError(false);
 	}
 
-	function endTurn() {
+	function selectionMade() {
 		const questionsCopy = [...questions];
 		questionsCopy[currentQuestion].answered = true;
 		questionsCopy[currentQuestion].userCorrect = userCorrect();
+		setPlayerScore(questionsCopy.filter(question => question?.userCorrect).length);
 		setQuestions(questionsCopy);
-		nextItem();
 	}
 
-	function nextItem() {
+	function endTurn() {
 		if (id + 1 === totalQuestions) {
 			setCurrentComponent('GameOver');
 		}
@@ -57,14 +56,8 @@ function GameQuestion(props) {
 		}
 	}
 
-	function updateScore() {
-		if (userCorrect()) {
-			setPlayerScore(playerScore + 1);
-		}
-	}
-
 	useEffect(() => {
-		updateScore();
+		selectionMade();
 	}, [currentSelection]);
 
 	return (
