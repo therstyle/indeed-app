@@ -10,12 +10,22 @@
 	}
 
 	&__question-header {
+		--gap: #{rem(16px)};
+
 		display: flex;
 		flex-wrap: wrap;
+		gap: var(--gap);
 	}
 
 	&__header-title {
 		flex: 1;
+	}
+
+	&__header-title,
+	&__header-score {
+		@include mobile {
+			flex: 1 100%;
+		}
 	}
 
 	&__question-choices {
@@ -26,8 +36,14 @@
 		gap: var(--gap);
 
 		> ul {
+			--column-count: 2;
+
+			@include mobile {
+				--column-count: 1;
+			}
+
 			display: grid;
-			grid-template-columns: repeat(2, 1fr);
+			grid-template-columns: repeat(var(--column-count), 1fr);
 			gap: var(--gap);
 			margin-bottom: 8px;
 

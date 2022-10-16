@@ -18,7 +18,13 @@ body {
 }
 
 h1 {
-	font-size: rem(36px);
+	--size: #{rem(36px)};
+	
+	@include mobile {
+		--size: #{rem(24px)};
+	}
+
+	font-size: var(--size);
 }
 
 h1, 
@@ -46,8 +52,8 @@ ul, li {
 }
 
 input[type="radio"] {
-	width: rem(24px);
-	height: rem(24px);
+	width: var(--input-size);
+	height: var(--input-size);
 	margin: 0;
 	appearance: none;
 	border: rem(1px) solid var(--input-border-color);
@@ -56,6 +62,7 @@ input[type="radio"] {
 	align-items: center;
 	justify-content: center;
 	position: relative;
+	flex: 0 0 var(--input-size);
 
 	&.checked {
 		&::before,

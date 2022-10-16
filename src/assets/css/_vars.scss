@@ -9,7 +9,12 @@ $html-font-size: 16px;
 :root {
 	//Sizes
 	--max-container-width: 808px;
-	--wrapper-padding: #{rem(48)};
+	--wrapper-padding: #{rem(48px)};
+	--input-size: #{rem(24px)};
+
+	@include mobile {
+		--wrapper-padding: #{rem(24px)};
+	}
 
 	//Colors
 	--white: #FFF;
