@@ -5,7 +5,6 @@ const GameContext = createContext(null);
 function GameContextProvider(props) {
 	const [questions, setQuestions] = useState([]);
 	const totalQuestions = questions.length;
-	const questionsAnswered = questions.filter(question => question?.answered).length;
 	const [playerScore, setPlayerScore] = useState(0);
 	const [currentQuestion, setCurrentQuestion] = useState(0);
 	const [currentComponent, setCurrentComponent] = useState('GameIntro');
@@ -18,7 +17,6 @@ function GameContextProvider(props) {
 		questions,
 		setQuestions,
 		totalQuestions,
-		questionsAnswered,
 		playerScore,
 		setPlayerScore,
 		currentQuestion,
