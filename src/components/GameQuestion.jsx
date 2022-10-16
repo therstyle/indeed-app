@@ -78,6 +78,7 @@ function GameQuestion(props) {
 								id={`game-question-${id}_option-${index}`} 
 								name={`game-question-${id}_option-${index}`}
 								checked={currentSelection === index}
+								className={currentSelection === index ? 'checked animate' : ''}
 								onChange={(e) => changeHandler(e)}
 								value={index}
 								disabled={currentSelection !== null}

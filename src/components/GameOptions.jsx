@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import useGameContext from '../context/useGameContext';
 import '../assets/css/gameoptions.scss';
 
@@ -10,12 +11,15 @@ function GameOptions() {
 		setCurrentComponent
 	} = useGameContext();
 
+	const [selection, setSelection] = useState(false);
+
 	function updateName(e) {
 		setPlayerName(e.target.value);
 	}
 
 	function updatePlayStyle(e) {
 		setPlayStyle(e.target.value);
+		setSelection(true);
 	}
 
 	function submitHandler(e) {
@@ -53,6 +57,7 @@ function GameOptions() {
 									type="radio" 
 									value="normal"
 									checked={playStyle === 'normal'}
+									className={`${playStyle === 'normal' ? 'checked' : '' } ${selection ? 'animate' : ''}`}
 									onChange={(e) => updatePlayStyle(e)}
 								/>
 								<label htmlFor="play_style_normal">Normal</label>
@@ -65,6 +70,7 @@ function GameOptions() {
 									type="radio" 
 									value="random"
 									checked={playStyle === 'random'}
+									className={`${playStyle === 'random' ? 'checked' : '' } ${selection ? 'animate' : ''}`}
 									onChange={(e) => updatePlayStyle(e)}
 								/>
 								<label htmlFor="play_style_random">Random</label>

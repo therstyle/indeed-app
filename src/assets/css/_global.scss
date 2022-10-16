@@ -45,6 +45,41 @@ ul, li {
 	margin: 0;
 }
 
+input[type="radio"] {
+	width: rem(24px);
+	height: rem(24px);
+	margin: 0;
+	appearance: none;
+	border: rem(1px) solid var(--input-border-color);
+	border-radius: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	position: relative;
+
+	&.checked {
+		&::before,
+		&::after {
+			background-color: var(--input-selected-color);
+		}
+
+		&.animate {
+			&::after {
+				animation: .6s pulse ease-in-out forwards;
+			}
+		}
+	}
+
+	&::after,
+	&::before {
+		content: '';
+		width: rem(12px);
+		height: rem(12px);
+		position: absolute;
+		border-radius: 100%;
+	}
+}
+
 .full-height {
 	display: flex;
 	justify-content: center;
@@ -75,5 +110,22 @@ ul, li {
 
 	100% {
 		background-position: 0% 50%;
+	}
+}
+
+@keyframes pulse {
+	0% {
+		opacity: 1;
+		transform: scale(1);	
+	}
+
+	50% {
+		opacity: 0;
+		transform: scale(4);	
+	}
+
+	100% {
+		opacity: 0;
+		transform: scale(1);	
 	}
 }

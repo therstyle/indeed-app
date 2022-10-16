@@ -50,7 +50,7 @@
 		gap: var(--gap);
 
 		> div {
-			--gap: #{rem(2px)};
+			--gap: #{rem(8px)};
 
 			display: flex;
 			gap: var(--gap);
