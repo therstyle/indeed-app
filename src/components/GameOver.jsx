@@ -10,6 +10,7 @@ function GameOver() {
 		setQuestions,
 		playerName,
 		playerScore,
+		setPlayerScore,
 		totalQuestions,
 		playerScoreHistory,
 		setPlayerScoreHistory
@@ -28,6 +29,7 @@ function GameOver() {
 
 		setQuestions(questionsCopy);
 		setCurrentQuestion(0);
+		setPlayerScore(0);
 		setCurrentComponent('GameIntro');
 	}
 

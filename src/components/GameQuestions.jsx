@@ -4,12 +4,22 @@ import '../assets/css/gamequestions.scss';
 
 function GameBoard() {
 	const {questions, currentQuestion} = useGameContext();
+	const SelectedItem = questions.map((question, index) => {
+		if (index === currentQuestion) {
+			return (
+				<GameQuestion key={index} id={index} question={question}></GameQuestion>
+			)
+		}
+		else {
+			return null;
+		}
+	});
 
 	return (
 		<section className="game__board full-height">
 			<article className="game__board-content card">
 				<ul className="game__board-questions">
-					<GameQuestion id={currentQuestion} question={questions[currentQuestion]}></GameQuestion>
+					{SelectedItem}
 				</ul>
 			</article>
 		</section>

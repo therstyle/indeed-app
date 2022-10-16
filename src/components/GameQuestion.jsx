@@ -14,12 +14,14 @@ function GameQuestion(props) {
 		totalQuestions,
 		questionsAnswered,
 		playerScore,
+		setPlayerScore,
 		setCurrentComponent
 	} = useGameContext();
 
 	const userCorrect = () => question?.answerIndex.includes(currentSelection);
 	const statusMessage = userCorrect() ? 'You got it right!' : 'Sorry, wrong answer';
 	const statusClass = userCorrect() ? 'answer-correct' : 'answer-wrong';
+	const buttonText = id + 1 === totalQuestions ? 'View results' : 'Next question'
 
 	function submitHandler(e) {
     e.preventDefault();
@@ -43,33 +45,33 @@ function GameQuestion(props) {
 		questionsCopy[currentQuestion].answered = true;
 		questionsCopy[currentQuestion].userCorrect = userCorrect();
 		setQuestions(questionsCopy);
-		reset();
+		nextItem();
 	}
 
 	function nextItem() {
-		if (questionsAnswered === 0) {return};
-		if (questionsAnswered === totalQuestions) {
+		if (id + 1 === totalQuestions) {
 			setCurrentComponent('GameOver');
 		}
 		else {
-			setCurrentQuestion(currentQuestion + 1);
+			setCurrentQuestion(id + 1);
 		}
 	}
 
-	function reset() {
-    setCurrentSelection(null);
-    setError(false);
-  }
+	function updateScore() {
+		if (userCorrect()) {
+			setPlayerScore(playerScore + 1);
+		}
+	}
 
 	useEffect(() => {
-		nextItem();
-	}, [questions]);
+		updateScore();
+	}, [currentSelection]);
 
 	return (
 		<li id={`game-question-${id}`} className="game__question">
 			<div className="game__question-content">
 				<header className="game__question-header">
-					<h3 className="game__header-title">Question {currentQuestion + 1} of {totalQuestions}</h3>
+					<h3 className="game__header-title">Question {id + 1} of {totalQuestions}</h3>
 					<h3 className="game__header-score"> Score: {playerScore}</h3>
 				</header>
 				
@@ -95,7 +97,7 @@ function GameQuestion(props) {
 					</ul>
 					
 					<div className="game__question-action">
-						<button>Next question</button>
+						<button>{buttonText}</button>
 						{currentSelection !== null && <div className={`game__question-answer ${statusClass}`}>{statusMessage}</div>}
 
 						{error && <div className="game__question-error">Please choose an option to continue</div>}
