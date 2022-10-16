@@ -14,8 +14,35 @@ function GameOver() {
 		playerScoreHistory,
 		setPlayerScoreHistory
 	} = useGameContext();
+
+	const endMessages = [
+		{
+			hasName: `${playerName}, better luck next time!`,
+			generic: 'Better luck next time!'
+		},
+		{
+			hasName: `${playerName} try again, you'll do better next time!`,
+			generic: `Try again, you'll do better next time!`
+		},
+		{
+			hasName: `Not bad ${playerName}, play again!`,
+			generic: 'Not bad, play again!'
+		},
+		{
+			hasName: `Pretty good ${playerName}, play again!`,
+			generic: 'Pretty good, play again!'
+		},
+		{
+			hasName: `${playerName} is a trivia pro!`,
+			generic: `You're a trivia pro!`
+		},
+		{
+			hasName: `${playerName} is a Trivia master!`,
+			generic: `You're a Trivia master!`
+		}
+	];
 	
-	const playerHeadline = playerName === '' ? "You're a Trivia master!" : `${playerName} is a Trivia master!`;
+	const playerHeadline = playerName === '' ? endMessages[playerScore].generic : endMessages[playerScore].hasName;
 	const bestScore = Math.max(...playerScoreHistory.map(game => game.score));
 	const bestGame = playerScoreHistory.find(game => game.score === bestScore);
 
