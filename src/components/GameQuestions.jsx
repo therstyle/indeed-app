@@ -2,7 +2,7 @@ import useGameContext from '../context/useGameContext';
 import GameQuestion from './GameQuestion';
 import '../assets/css/gamequestions.scss';
 
-function GameBoard() {
+function GameQuestions() {
 	const {questions, currentQuestion} = useGameContext();
 	const SelectedItem = questions.map((question, index) => {
 		if (index === currentQuestion) {
@@ -26,4 +26,4 @@ function GameBoard() {
 	)
 }
 
-export default GameBoard;
+export default GameQuestions;
