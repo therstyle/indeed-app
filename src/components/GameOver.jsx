@@ -22,7 +22,6 @@ function GameOver() {
 	function resetGame() {
 		const questionsCopy = [...questions];
 		questionsCopy.forEach(question => {
-			delete question?.answered;
 			delete question?.userCorrect;
 		});
 

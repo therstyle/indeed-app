@@ -41,7 +41,6 @@ function GameQuestion(props) {
 
 	function selectionMade() {
 		const questionsCopy = [...questions];
-		questionsCopy[currentQuestion].answered = true;
 		questionsCopy[currentQuestion].userCorrect = userCorrect();
 		setPlayerScore(questionsCopy.filter(question => question?.userCorrect).length);
 		setQuestions(questionsCopy);
