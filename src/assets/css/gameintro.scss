@@ -1,0 +1,41 @@
+@import 'vars';
+
+.game {
+	&__intro {
+		text-align: center;
+	}
+
+	&__intro-content {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+
+	&__intro-header {
+		--gap: #{rem(48px)};
+
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: var(--gap);
+
+		img {
+			width: 100%;
+			max-width: rem(200px);
+			display: block;
+		}
+
+		h1 {
+			text-transform: uppercase;
+			font-family: var(--headline-font);
+			letter-spacing: rem(3px);
+			font-size: clamp(rem(48px), 8vw, rem(100px));
+			line-height: 1;
+			color: var(--black);
+		}
+	}
+
+	&__intro-lottie {
+		max-width: rem(300px);
+	}
+}

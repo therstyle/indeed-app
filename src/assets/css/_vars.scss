@@ -1,0 +1,41 @@
+$mobile: 992px;
+$mobileHeight: 768px;
+$desktop: $mobile + 1;
+$desktopHeight: $mobileHeight + 1;
+$html-font-size: 16px;
+
+@import 'mixins';
+
+:root {
+	//Sizes
+	--max-container-width: 808px;
+	--wrapper-padding: #{rem(48px)};
+	--input-size: #{rem(24px)};
+
+	@include mobile {
+		--wrapper-padding: #{rem(24px)};
+	}
+
+	//Colors
+	--white: #FFF;
+	--light-blue: #{lighten(#065FB1, 60%)};
+	--blue: #065FB1;
+	--dark-blue: #164081;
+	--gray: #ccc;
+	--light-gray: #{lighten(#cccccc, 5%)};
+	--dark-gray: #2D2D2D;
+	--green: #065927;
+	--red: #FF0000;
+	--black: #000;
+	--input-border-color: #C0C0C0;
+	--input-selected-color: var(--blue);
+
+	//Fonts
+	--headline-font: 'Alfa Slab One', cursive;
+	--main-font: 'Roboto', sans-serif;
+
+	//Misc
+	--transition-duration: 0.2s;
+	--focus-shadow: #{0 rem(10px) rem(20px) rgba(0, 0, 0, .20)};
+	--focus-color: #{lighten(#065FB1, 30%)};
+}

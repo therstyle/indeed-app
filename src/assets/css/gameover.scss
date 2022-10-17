@@ -1,0 +1,33 @@
+@import 'vars';
+
+.game {
+	&__over {
+		text-align: center;
+	}
+
+	&__over-content {
+		--gap: #{rem(24px)};
+
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: var(--gap);
+	}
+
+	&__over-content-main {
+		--gap: #{rem(18px)};
+
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: var(--gap);
+
+		p {
+			margin: 0;
+		}
+	}
+
+	&__over-lottie {
+		max-width: rem(300px);
+	}
+}

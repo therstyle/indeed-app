@@ -1,0 +1,25 @@
+@mixin mobile() {
+	@media (max-width: $mobile) {
+		@content;
+	}
+}
+
+@mixin desktop() {
+	@media (min-width: $desktop) {
+		@content;
+	}
+}
+
+@mixin prefers-motion {
+	@media (prefers-reduced-motion: no-preference) {
+		@content;
+	}
+}
+
+@function stripUnit($value) {
+	@return $value / ($value * 0 + 1);
+}
+
+@function rem($pxValue) {
+	@return #{stripUnit($pxValue) / stripUnit($html-font-size)}rem;
+}

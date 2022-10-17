@@ -1,0 +1,83 @@
+@import 'vars';
+
+.game {
+	&__question-content {
+		--gap: #{rem(16px)};
+
+		display: flex;
+		flex-direction: column;
+		gap: var(--gap);
+	}
+
+	&__question-header {
+		--gap: #{rem(16px)};
+
+		display: flex;
+		flex-wrap: wrap;
+		gap: var(--gap);
+	}
+
+	&__header-title {
+		flex: 1;
+	}
+
+	&__header-title,
+	&__header-score {
+		@include mobile {
+			flex: 1 100%;
+		}
+	}
+
+	&__question-choices {
+		--gap: #{rem(16px)};
+
+		display: flex;
+		flex-direction: column;
+		gap: var(--gap);
+
+		> ul {
+			--column-count: 2;
+
+			@include mobile {
+				--column-count: 1;
+			}
+
+			display: grid;
+			grid-template-columns: repeat(var(--column-count), 1fr);
+			gap: var(--gap);
+			margin-bottom: 8px;
+
+			> li {
+				--gap: #{rem(8px)};
+
+				display: flex;
+				align-items: center;
+				gap: var(--gap);
+			}
+		}
+	}
+
+	&__question-action {
+		--gap: #{rem(24px)};
+
+		display: flex;
+		flex-direction: column;
+		gap: var(--gap);
+	}
+}
+
+.answer-correct,
+.answer-wrong,
+.game__question-error {
+	font-weight: bold;
+}
+
+
+.answer-correct {
+	color: var(--green);
+}
+
+.answer-wrong,
+.game__question-error {
+	color: var(--red);
+}
