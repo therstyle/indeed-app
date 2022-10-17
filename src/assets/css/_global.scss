@@ -51,6 +51,14 @@ ul, li {
 	margin: 0;
 }
 
+input:not([type="radio"]):not([type="checkbox"]) {
+	font-size: rem(16px);
+	border-radius: rem(8px);
+	padding: rem(12px) rem(16px);
+	box-shadow: none;
+	border: rem(1px) solid var(--input-border-color);
+}
+
 input[type="radio"] {
 	width: var(--input-size);
 	height: var(--input-size);
