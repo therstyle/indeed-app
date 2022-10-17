@@ -57,6 +57,10 @@ input:not([type="radio"]):not([type="checkbox"]) {
 	padding: rem(12px) rem(16px);
 	box-shadow: none;
 	border: rem(1px) solid var(--input-border-color);
+
+	&:focus {
+		box-shadow: 0 rem(10px) rem(20px) rgba(0, 0, 0, .20);
+	}
 }
 
 input[type="radio"] {
