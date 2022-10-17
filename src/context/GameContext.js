@@ -1,4 +1,4 @@
-import { createContext, useState, useEffect } from 'react';
+import { createContext, useState, useEffect, useRef } from 'react';
 
 const GameContext = createContext(null);
 
@@ -11,6 +11,7 @@ function GameContextProvider(props) {
 	const [playerName, setPlayerName] = useState('');
 	const [playStyle, setPlayStyle] = useState('normal');
 	const [playerScoreHistory, setPlayerScoreHistory] = useState([]);
+	const introMusic = useRef(new Audio());
 
 	const {children} = props;
 	const data = {
@@ -28,7 +29,8 @@ function GameContextProvider(props) {
 		playStyle,
 		setPlayStyle,
 		playerScoreHistory,
-		setPlayerScoreHistory
+		setPlayerScoreHistory,
+		introMusic
 	}
 
 	async function loadData(url) {

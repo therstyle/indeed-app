@@ -8,7 +8,8 @@ function GameOptions() {
 		setPlayerName,
 		playStyle,
 		setPlayStyle,
-		setCurrentComponent
+		setCurrentComponent,
+		introMusic
 	} = useGameContext();
 
 	const [selection, setSelection] = useState(false);
@@ -24,6 +25,8 @@ function GameOptions() {
 
 	function submitHandler(e) {
 		e.preventDefault();
+		introMusic.current.pause();
+		introMusic.current.src = '';
 		setCurrentComponent('GameQuestions');
 	}
 

@@ -4,13 +4,19 @@ import animationBrain from '../assets/lottie/brain.json';
 import '../assets/css/gameintro.scss';
 
 function GameIntro() {
-	const {setCurrentComponent} = useGameContext();
+	const {setCurrentComponent, introMusic} = useGameContext();
+
+	function initGame() {
+		setCurrentComponent('GameOptions');
+		introMusic.current.src = 'audio/intro.mp3';
+		introMusic.current.play();
+	}
 
 	return (
 		<section className="game__intro full-height">
 			<article className="game__intro-content card">
 				<header className='game__intro-header'>
-					<img src="images/indeed_logo.svg" alt="Indeed logo" />
+					<img src="/images/indeed_logo.svg" alt="Indeed logo" />
 					<h1>Quiz Bowl</h1>
 				</header>
 
@@ -20,7 +26,7 @@ function GameIntro() {
 					className="game__intro-lottie"
 				></Lottie>
 
-				<button onClick={() => {setCurrentComponent('GameOptions')}}>Start Game</button>
+				<button onClick={() => {initGame()}}>Start Game</button>
 			</article>
 		</section>
 	)
