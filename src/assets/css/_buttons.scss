@@ -18,4 +18,8 @@ button {
 		cursor: pointer;
 		background-color: var(--dark-blue);
 	}
+
+	&:focus {
+		box-shadow: var(--focus-shadow);
+	}
 }
