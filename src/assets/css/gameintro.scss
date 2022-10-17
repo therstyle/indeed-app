@@ -19,8 +19,9 @@
 		align-items: center;
 		gap: var(--gap);
 
-		img {
+		img, svg {
 			width: 100%;
+			height: auto;
 			max-width: rem(200px);
 			display: block;
 		}
