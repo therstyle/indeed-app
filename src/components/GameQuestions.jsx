@@ -18,9 +18,11 @@ function GameQuestions() {
 	return (
 		<section className="game__board full-height">
 			<article className="game__board-content card">
-				<ul className="game__board-questions">
+				{
+					questions && questions.length > 0 ? (<ul className="game__board-questions">
 					{SelectedItem}
-				</ul>
+				</ul>) : 'Sorry, no questions are available. Please try again later.'
+				}
 			</article>
 		</section>
 	)
