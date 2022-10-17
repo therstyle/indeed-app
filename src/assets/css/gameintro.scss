@@ -6,12 +6,9 @@
 	}
 
 	&__intro-content {
-		--gap: #{rem(48px)};
-
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		gap: var(--gap);
 	}
 
 	&__intro-header {
@@ -36,5 +33,9 @@
 			line-height: 1;
 			color: var(--black);
 		}
+	}
+
+	&__intro-lottie {
+		max-width: rem(300px);
 	}
 }
