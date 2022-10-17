@@ -1,6 +1,7 @@
 {
   "name": "de-exercise",
   "version": "1.0.0",
+	"homepage": "./",
   "description": "",
   "keywords": [],
   "main": "src/index.tsx",
