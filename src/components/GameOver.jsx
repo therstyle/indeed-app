@@ -1,6 +1,10 @@
 import { useEffect } from 'react';
+import Lottie from 'lottie-react';
 import useGameContext from "../context/useGameContext";
 import '../assets/css/gameover.scss';
+import animationGood from '../assets/lottie/good.json';
+import animationBetter from '../assets/lottie/better.json';
+import animationBest from '../assets/lottie/best.json';
 
 function GameOver() {
 	const {
@@ -18,27 +22,33 @@ function GameOver() {
 	const endMessages = [
 		{
 			hasName: `${playerName}, better luck next time!`,
-			generic: 'Better luck next time!'
+			generic: 'Better luck next time!',
+			animation: animationGood
 		},
 		{
 			hasName: `${playerName} try again, you'll do better next time!`,
-			generic: `Try again, you'll do better next time!`
+			generic: `Try again, you'll do better next time!`,
+			animation: animationGood
 		},
 		{
 			hasName: `Not bad ${playerName}, play again!`,
-			generic: 'Not bad, play again!'
+			generic: 'Not bad, play again!',
+			animation: animationGood
 		},
 		{
 			hasName: `Pretty good ${playerName}, play again!`,
-			generic: 'Pretty good, play again!'
+			generic: 'Pretty good, play again!',
+			animation: animationBetter
 		},
 		{
 			hasName: `${playerName} is a trivia pro!`,
-			generic: `You're a trivia pro!`
+			generic: `You're a trivia pro!`,
+			animation: animationBetter
 		},
 		{
 			hasName: `${playerName} is a Trivia master!`,
-			generic: `You're a Trivia master!`
+			generic: `You're a Trivia master!`,
+			animation: animationBest
 		}
 	];
 	
@@ -94,6 +104,12 @@ function GameOver() {
 					<header>
 						<h1>{playerHeadline}</h1>
 					</header>
+
+					<Lottie 
+						className="game__over-lottie" 
+						animationData={endMessages[playerScore].animation}
+					>
+					</Lottie>
 				
 					<p>You got {playerScore} out of {totalQuestions} questions right!</p>
 
