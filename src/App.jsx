@@ -32,7 +32,7 @@ function App() {
 
 	return (
 		<div className="game">
-				<CurrentView></CurrentView>
+			<CurrentView></CurrentView>
 		</div>
 	)
 }
