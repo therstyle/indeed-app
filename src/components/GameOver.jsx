@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import Lottie from 'lottie-react';
 import useGameContext from "../context/useGameContext";
 import '../assets/css/gameover.scss';
@@ -19,42 +19,33 @@ function GameOver() {
 		setPlayerScoreHistory
 	} = useGameContext();
 
-	const endMessages = [
-		{
-			hasName: `${playerName}, better luck next time!`,
-			generic: 'Better luck next time!',
-			animation: animationGood
-		},
-		{
-			hasName: `${playerName} try again, you'll do better next time!`,
-			generic: `Try again, you'll do better next time!`,
-			animation: animationGood
-		},
-		{
-			hasName: `Not bad ${playerName}, play again!`,
-			generic: 'Not bad, play again!',
-			animation: animationGood
-		},
-		{
-			hasName: `Pretty good ${playerName}, play again!`,
-			generic: 'Pretty good, play again!',
-			animation: animationBetter
-		},
-		{
-			hasName: `${playerName} is a trivia pro!`,
-			generic: `You're a trivia pro!`,
-			animation: animationBetter
-		},
-		{
-			hasName: `${playerName} is a Trivia master!`,
-			generic: `You're a Trivia master!`,
-			animation: animationBest
-		}
-	];
-	
-	const playerHeadline = playerName === '' ? endMessages[playerScore].generic : endMessages[playerScore].hasName;
+	const [endMessages, setEndMessages] = useState([]);
+	const playerHeadline = playerName === '' ? endMessages[playerScore].generic : insertPlayerName(endMessages[playerScore]?.hasName);
 	const bestScore = Math.max(...playerScoreHistory.map(game => game.score));
 	const bestGame = playerScoreHistory.find(game => game.score === bestScore);
+
+	const animation = {
+		"good": animationGood,
+		"better": animationBetter,
+		"best": animationBest
+	}
+
+	async function loadData(url) {
+		try {
+			const response = await fetch(url);
+			const data = await response.json();
+
+			setEndMessages(data?.endMessages); 
+		}
+		catch(error) {
+			console.error(error);
+		}
+	}
+
+	function insertPlayerName(string) {
+		if (!string) {return};
+		return string.replaceAll('${playerName}', playerName);
+	}
 
 	function resetGame() {
 		const questionsCopy = [...questions];
@@ -90,6 +81,7 @@ function GameOver() {
 	}
 
 	useEffect(() => {
+		loadData('data.json');
 		updateHighScore();
 	}, []);
 
@@ -107,7 +99,7 @@ function GameOver() {
 
 					<Lottie 
 						className="game__over-lottie" 
-						animationData={endMessages[playerScore].animation}
+						animationData={animation[endMessages[playerScore]?.animation]}
 					>
 					</Lottie>
 				
