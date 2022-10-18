@@ -93,15 +93,21 @@ function GameOver() {
 		<section className="game__over full-height">
 			<article className="game__over-content card">
 				<div className="game__over-content-main">
-					<header>
-						<h1>{playerHeadline}</h1>
-					</header>
+					{
+						endMessages.length > 0 && 
+						
+						<>
+							<header>
+								<h1>{playerHeadline}</h1>
+							</header>
 
-					<Lottie 
-						className="game__over-lottie" 
-						animationData={animation[endMessages[playerScore]?.animation]}
-					>
-					</Lottie>
+							<Lottie 
+								className="game__over-lottie" 
+								animationData={animation[endMessages[playerScore]?.animation]}
+							>
+							</Lottie>
+						</>
+					}
 				
 					<p>You got {playerScore} out of {totalQuestions} questions right!</p>
 
