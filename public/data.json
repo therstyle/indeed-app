@@ -53,7 +53,7 @@
 	],
 	"endMessages": [
 		{
-			"hasName": "${playerName}, better luck next time!!",
+			"hasName": "${playerName}, better luck next time!",
 			"generic": "Better luck next time!",
 			"animation": "good"
 		},
