@@ -37,7 +37,7 @@ function GameContextProvider(props) {
 		try {
 			const response = await fetch(url);
 			const data = await response.json();
-			const questionsOrder = playStyle === 'random' ? data.sort((a, b) => 0.5 - Math.random()) : data;
+			const questionsOrder = playStyle === 'random' ? data?.questions.sort((a, b) => 0.5 - Math.random()) : data?.questions;
 
 			setQuestions(questionsOrder); 
 		}
