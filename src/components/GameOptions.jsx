@@ -1,8 +1,11 @@
+import PropTypes from 'prop-types';
 import { useState } from 'react';
 import useGameContext from '../context/useGameContext';
 import '../assets/css/gameoptions.scss';
 
-function GameOptions() {
+function GameOptions(props) {
+	const {title = 'Game Options'} = props;
+
 	const {
 		playerName, 
 		setPlayerName,
@@ -13,6 +16,10 @@ function GameOptions() {
 	} = useGameContext();
 
 	const [selection, setSelection] = useState(false);
+
+	GameOptions.propTypes = {
+		title: PropTypes.string
+	}
 
 	function updateName(e) {
 		setPlayerName(e.target.value);
@@ -34,7 +41,7 @@ function GameOptions() {
 		<section className="game__options full-height">
 			<article className="game__options-content card">
 				<header className="game__options-header">
-					<h2>Game Options</h2>
+					<h2>{title}</h2>
 				</header>
 
 				<form className="game__options-choices" onSubmit={(e) => submitHandler(e)}>
