@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import useGameContext from '../context/useGameContext';
 import '../assets/css/gamequestion.scss';
 
@@ -20,7 +21,12 @@ function GameQuestion(props) {
 	const userCorrect = () => question?.answerIndex.includes(currentSelection);
 	const statusMessage = userCorrect() ? 'You got it right!' : 'Sorry, wrong answer';
 	const statusClass = userCorrect() ? 'answer-correct' : 'answer-wrong';
-	const buttonText = id + 1 === totalQuestions ? 'View results' : 'Next question'
+	const buttonText = id + 1 === totalQuestions ? 'View results' : 'Next question';
+
+	GameQuestion.propTypes = {
+		id: PropTypes.number,
+		question: PropTypes.object
+	}
 
 	function submitHandler(e) {
     e.preventDefault();
